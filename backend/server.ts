@@ -36,6 +36,17 @@ app.use(express.urlencoded({extended:true,limit:'10mb'}));
 app.use('/api',userRoutes);
 app.use('/dev',userRoutes);
 
+app.get('/', (req, res) => {
+    res.json({
+        message: 'Data Table API',
+        endpoints: {
+            health: '/health',
+            users: '/api/users',
+            seed: 'POST /dev/seed'
+        }
+    });
+});
+
 app.get('/health', (req ,res) => {
     res.json({status :'OK' , timeStamp: new Date().toISOString()});
 });
