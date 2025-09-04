@@ -55,7 +55,7 @@ const UserTable: React.FC = () => {
         sortDir,
       });
 
-      const response = await fetch(`http://localhost:3001/api/users?${params}`);
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users?${params}`);
       
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -76,7 +76,7 @@ const UserTable: React.FC = () => {
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:3001/dev/seed?users=50000&orders=500000&products=10000', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/dev/seed?users=50000&orders=500000&products=10000`, {
         method: 'POST',
       });
       
