@@ -16,10 +16,15 @@ app.use(helmet());
 app.use(compression());
 
 //Cors
-app.use(cors({
-    origin: COR_ORIGIN,
-    credentials : true,
+const allowedOrigins: string[] = [
+    'http://localhost:3000',
+    'https://data-table-challenge.vercel.app',
+    process.env.COR_ORIGIN || ''
+].filter(origin => origin !== '');
 
+app.use(cors({
+    origin: allowedOrigins,
+    credentials : true,
 }));
 
 //rate limit
